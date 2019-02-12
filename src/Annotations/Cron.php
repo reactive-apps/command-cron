@@ -11,21 +11,21 @@ final class Cron
     /**
      * @var string
      */
-    private $method;
+    private $expression;
 
     /**
-     * @param string[] $methods
+     * @param string[] $expressions
      */
-    public function __construct(array $methods)
+    public function __construct(array $expressions)
     {
-        $this->method = current($methods);
+        $this->expression = current($expressions);
     }
 
     /**
      * @return string
      */
-    public function getMethod(): string
+    public function getExpression(): string
     {
-        return $this->method;
+        return $this->expression;
     }
 }
