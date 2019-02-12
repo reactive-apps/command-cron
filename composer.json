@@ -5,12 +5,16 @@
     "name": "reactive-apps/command-cron",
     "require": {
         "php": "^7.2",
+        "cakephp/collection": "^3.7",
         "doctrine/annotations": "^1.6",
         "dragonmantank/cron-expression": "^2.2",
         "reactive-apps/command": "dev-master",
         "reactive-apps/rx-streams": "dev-master",
+        "recoil/react": "^1.0",
         "roave/better-reflection": "^3.0 || ^2.0",
         "wyrihaximus/doctrine-annotation-autoloader": "^1.0",
+        "wyrihaximus/get-in-packages-composer.jason": "^1.0",
+        "wyrihaximus/iterator-or-array-to-array": "^1.1",
         "wyrihaximus/psr-3-context-logger": "^1.0"
     },
     "require-dev": {

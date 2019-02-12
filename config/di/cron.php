@@ -1,23 +1,23 @@
 <?php
 
+use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use React\EventLoop\LoopInterface;
 use ReactiveApps\Command\Cron\Command\Cron;
-use ReactiveApps\Command\HttpServer\Command\HttpServer;
-use ReactiveApps\Command\HttpServer\ControllerMiddleware;
-use ReactiveApps\Command\HttpServer\RequestHandlerMiddleware;
 use ReactiveApps\Rx\Shutdown;
+use Recoil\Kernel;
 use WyriHaximus\PSR3\ContextLogger\ContextLogger;
-use WyriHaximus\React\Http\Middleware\RewriteMiddleware;
-use WyriHaximus\React\Http\Middleware\WebrootPreloadMiddleware;
-use WyriHaximus\React\Http\PSR15MiddlewareGroup\Factory;
 
 return [
     Cron::class => \DI\factory(function (
         LoggerInterface $logger,
+        LoopInterface $loop,
+        ContainerInterface $container,
+        Kernel $kernel,
         Shutdown $shutdown
     ) {
         $logger = new ContextLogger($logger, ['command' => 'cron'], 'cron');
 
-        return new Cron($logger, $shutdown);
+        return new Cron($loop, $logger, $container, $kernel, $shutdown);
     }),
 ];
