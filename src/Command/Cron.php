@@ -117,6 +117,6 @@ final class Cron implements Command
     {
         yield resolve();
 
-        Scheduler::create($this->loop, ...$this->crons);
+        Scheduler::createHighPrecision($this->loop, ...$this->crons);
     }
 }

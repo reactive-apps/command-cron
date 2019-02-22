@@ -1496,12 +1496,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/reactphp-cron.git",
-                "reference": "1e41a0e3c4cec56c593f81c8f3f32f1d7e755098"
+                "reference": "edb7c59161d2ea751c3fc68dac2f84cc3ef2da04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/reactphp-cron/zipball/1e41a0e3c4cec56c593f81c8f3f32f1d7e755098",
-                "reference": "1e41a0e3c4cec56c593f81c8f3f32f1d7e755098",
+                "url": "https://api.github.com/repos/WyriHaximus/reactphp-cron/zipball/edb7c59161d2ea751c3fc68dac2f84cc3ef2da04",
+                "reference": "edb7c59161d2ea751c3fc68dac2f84cc3ef2da04",
                 "shasum": ""
             },
             "require": {
@@ -1525,7 +1525,7 @@
                 "MIT"
             ],
             "description": "Cronlike scheduler running inside a ReactPHP Event Loop",
-            "time": "2019-02-22T06:57:58+00:00"
+            "time": "2019-02-22T17:24:50+00:00"
         },
         {
             "name": "wyrihaximus/react-mutex",
