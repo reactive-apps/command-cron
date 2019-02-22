@@ -2,23 +2,26 @@
 
 namespace ReactiveApps\Command\Cron\Command;
 
-use Cron\CronExpression;
-use Psr\Container\ContainerInterface;
-use React\EventLoop\LoopInterface;
-use function React\Promise\resolve;
-use ReactiveApps\Command\Cron\Annotations\Cron as CronAnnotation;
 use Cake\Collection\Collection;
 use Doctrine\Common\Annotations\AnnotationReader;
+use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use React\EventLoop\LoopInterface;
+use React\Promise\Promise;
 use ReactiveApps\Command\Command;
+use ReactiveApps\Command\Cron\Annotations\Cron as CronAnnotation;
 use ReactiveApps\Rx\Shutdown;
 use Recoil\Kernel;
 use Roave\BetterReflection\BetterReflection;
 use Roave\BetterReflection\Reflector\ClassReflector;
 use Roave\BetterReflection\SourceLocator\Type\SingleFileSourceLocator;
+use WyriHaximus\PSR3\ContextLogger\ContextLogger;
+use WyriHaximus\React\Action;
+use WyriHaximus\React\ActionInterface;
+use WyriHaximus\React\Cron as Scheduler;
+use function React\Promise\resolve;
 use function WyriHaximus\from_get_in_packages_composer;
 use function WyriHaximus\iteratorOrArrayToArray;
-use WyriHaximus\PSR3\ContextLogger\ContextLogger;
 
 final class Cron implements Command
 {
@@ -39,7 +42,10 @@ final class Cron implements Command
     /** @var Shutdown */
     private $shutdown;
 
-    private $crons = [];
+    /** @var ActionInterface[] */
+    private $crons;
+
+    private $cronInstances = [];
 
     /**
      * @param LoggerInterface $logger
@@ -54,7 +60,7 @@ final class Cron implements Command
         $this->shutdown = $shutdown;
 
         try {
-            $this->crons = iterator_to_array($this->locateActions());
+            $this->crons = iteratorOrArrayToArray($this->locateActions());
         } catch (\Throwable $et) {
             echo (string)$et;
         }
@@ -78,9 +84,31 @@ final class Cron implements Command
                     continue;
                 }
 
-                yield $class->getName() => [
-                    'expression' => CronExpression::factory($annotations[CronAnnotation::class]->getExpression()),
-                ];
+                $className = $class->getName();
+                yield new Action(
+                    $className,
+                    $annotations[CronAnnotation::class]->getExpression(),
+                    function () use ($className) {
+                        return new Promise(function ($resolve, $reject) use ($className) {
+                            $logger = new ContextLogger($this->logger, ['cron' => $className], $className);
+                            if (!isset($this->cronInstances[$className])) {
+                                $logger->debug('Instantiating');
+                                $this->cronInstances[$className] = $this->container->get($className);
+                            }
+
+                            $this->kernel->execute(function () use ($logger, $className, $resolve, $reject) {
+                                try {
+                                    $logger->debug('Running');
+                                    $result = yield $this->cronInstances[$className]();
+                                    $logger->debug('Done');
+                                    $resolve($result);
+                                } catch (\Throwable $throwable) {
+                                    $reject($throwable);
+                                }
+                            });
+                        });
+                    }
+                );
             }
         }
     }
@@ -89,24 +117,6 @@ final class Cron implements Command
     {
         yield resolve();
 
-        $this->loop->addPeriodicTimer(60, function () {
-            $this->logger->debug('Checking which cron action to run');
-            foreach ($this->crons as $class => &$cron) {
-                if ($cron['expression']->isDue() === true) {
-                    $logger = new ContextLogger($this->logger, ['cron' => $class], $class);
-                    if (!isset($cron['instance'])) {
-                        $logger->debug('Instantiating');
-                        $cron['instance'] = $this->container->get($class);
-                    }
-
-                    $this->kernel->execute(function () use ($logger, $cron) {
-                        $logger->debug('Running');
-                        yield $cron['instance']();
-                        $logger->debug('Done');
-                    });
-                }
-            }
-            $this->logger->debug('Done');
-        });
+        Scheduler::create($this->loop, ...$this->crons);
     }
 }

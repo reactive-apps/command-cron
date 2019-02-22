@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ec200baa1b2ff3a44de74909ca29c44",
+    "content-hash": "65148fb95bb313899718fe674bc92093",
     "packages": [
         {
             "name": "cakephp/collection",
@@ -51,6 +51,59 @@
                 "iterators"
             ],
             "time": "2019-01-08T15:11:44+00:00"
+        },
+        {
+            "name": "clue/block-react",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/clue/reactphp-block.git",
+                "reference": "a4a5cd64ded3b15affa168a2419fa4eda08b96aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/clue/reactphp-block/zipball/a4a5cd64ded3b15affa168a2419fa4eda08b96aa",
+                "reference": "a4a5cd64ded3b15affa168a2419fa4eda08b96aa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3",
+                "react/event-loop": "^1.0 || ^0.5 || ^0.4 || ^0.3.5",
+                "react/promise": "^2.7 || ^1.2.1",
+                "react/promise-timer": "^1.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.4 || ^5.7 || ^4.8.35"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@lueck.tv"
+                }
+            ],
+            "description": "Lightweight library that eases integrating async components built for ReactPHP in a traditional, blocking environment.",
+            "homepage": "https://github.com/clue/reactphp-block",
+            "keywords": [
+                "async",
+                "await",
+                "blocking",
+                "event loop",
+                "promise",
+                "reactphp",
+                "sleep",
+                "synchronous"
+            ],
+            "time": "2018-06-14T08:50:53+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -705,6 +758,59 @@
                 "promises"
             ],
             "time": "2019-01-07T21:25:54+00:00"
+        },
+        {
+            "name": "react/promise-timer",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactphp/promise-timer.git",
+                "reference": "a11206938ca2394dc7bb368f5da25cd4533fa603"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactphp/promise-timer/zipball/a11206938ca2394dc7bb368f5da25cd4533fa603",
+                "reference": "a11206938ca2394dc7bb368f5da25cd4533fa603",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3",
+                "react/event-loop": "^1.0 || ^0.5 || ^0.4 || ^0.3.5",
+                "react/promise": "^2.7.0 || ^1.2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.4 || ^5.7 || ^4.8.35"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "React\\Promise\\Timer\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@lueck.tv"
+                }
+            ],
+            "description": "A trivial implementation of timeouts for Promises, built on top of ReactPHP.",
+            "homepage": "https://github.com/reactphp/promise-timer",
+            "keywords": [
+                "async",
+                "event-loop",
+                "promise",
+                "reactphp",
+                "timeout",
+                "timer"
+            ],
+            "time": "2018-06-13T16:45:37+00:00"
         },
         {
             "name": "reactive-apps/command",
@@ -1383,6 +1489,78 @@
             ],
             "description": "PSR-3 context logger decorator",
             "time": "2018-05-06T20:31:49+00:00"
+        },
+        {
+            "name": "wyrihaximus/react-cron",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WyriHaximus/reactphp-cron.git",
+                "reference": "1e41a0e3c4cec56c593f81c8f3f32f1d7e755098"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WyriHaximus/reactphp-cron/zipball/1e41a0e3c4cec56c593f81c8f3f32f1d7e755098",
+                "reference": "1e41a0e3c4cec56c593f81c8f3f32f1d7e755098",
+                "shasum": ""
+            },
+            "require": {
+                "dragonmantank/cron-expression": "^2.2",
+                "php": "^7.2",
+                "react/event-loop": "^1.1",
+                "react/promise": "^2.7",
+                "wyrihaximus/react-mutex": "dev-master"
+            },
+            "require-dev": {
+                "api-clients/test-utilities": "^5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WyriHaximus\\React\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Cronlike scheduler running inside a ReactPHP Event Loop",
+            "time": "2019-02-22T06:57:58+00:00"
+        },
+        {
+            "name": "wyrihaximus/react-mutex",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WyriHaximus/reactphp-mutex.git",
+                "reference": "a654f4d7f041c49bcf9386e6f2114f27fb7ad1bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WyriHaximus/reactphp-mutex/zipball/a654f4d7f041c49bcf9386e6f2114f27fb7ad1bf",
+                "reference": "a654f4d7f041c49bcf9386e6f2114f27fb7ad1bf",
+                "shasum": ""
+            },
+            "require": {
+                "clue/block-react": "^1.3",
+                "php": "^7.2",
+                "react/promise": "^2.7"
+            },
+            "require-dev": {
+                "api-clients/test-utilities": "^5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WyriHaximus\\React\\Mutex\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Mutex locking for ReactPHP projects",
+            "time": "2019-02-21T21:45:50+00:00"
         }
     ],
     "packages-dev": [
@@ -1463,59 +1641,6 @@
             ],
             "description": "Test utilities for api-clients packages",
             "time": "2019-01-20T18:52:18+00:00"
-        },
-        {
-            "name": "clue/block-react",
-            "version": "v1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/clue/reactphp-block.git",
-                "reference": "a4a5cd64ded3b15affa168a2419fa4eda08b96aa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/clue/reactphp-block/zipball/a4a5cd64ded3b15affa168a2419fa4eda08b96aa",
-                "reference": "a4a5cd64ded3b15affa168a2419fa4eda08b96aa",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3",
-                "react/event-loop": "^1.0 || ^0.5 || ^0.4 || ^0.3.5",
-                "react/promise": "^2.7 || ^1.2.1",
-                "react/promise-timer": "^1.5"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^6.4 || ^5.7 || ^4.8.35"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/functions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christian Lück",
-                    "email": "christian@lueck.tv"
-                }
-            ],
-            "description": "Lightweight library that eases integrating async components built for ReactPHP in a traditional, blocking environment.",
-            "homepage": "https://github.com/clue/reactphp-block",
-            "keywords": [
-                "async",
-                "await",
-                "blocking",
-                "event loop",
-                "promise",
-                "reactphp",
-                "sleep",
-                "synchronous"
-            ],
-            "time": "2018-06-14T08:50:53+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -4241,59 +4366,6 @@
             "time": "2017-02-14T16:28:37+00:00"
         },
         {
-            "name": "react/promise-timer",
-            "version": "v1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/reactphp/promise-timer.git",
-                "reference": "a11206938ca2394dc7bb368f5da25cd4533fa603"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/promise-timer/zipball/a11206938ca2394dc7bb368f5da25cd4533fa603",
-                "reference": "a11206938ca2394dc7bb368f5da25cd4533fa603",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3",
-                "react/event-loop": "^1.0 || ^0.5 || ^0.4 || ^0.3.5",
-                "react/promise": "^2.7.0 || ^1.2.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^6.4 || ^5.7 || ^4.8.35"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "React\\Promise\\Timer\\": "src/"
-                },
-                "files": [
-                    "src/functions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christian Lück",
-                    "email": "christian@lueck.tv"
-                }
-            ],
-            "description": "A trivial implementation of timeouts for Promises, built on top of ReactPHP.",
-            "homepage": "https://github.com/reactphp/promise-timer",
-            "keywords": [
-                "async",
-                "event-loop",
-                "promise",
-                "reactphp",
-                "timeout",
-                "timer"
-            ],
-            "time": "2018-06-13T16:45:37+00:00"
-        },
-        {
             "name": "sebastian/code-unit-reverse-lookup",
             "version": "1.0.1",
             "source": {
@@ -5813,7 +5885,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "reactive-apps/command": 20,
-        "reactive-apps/rx-streams": 20
+        "reactive-apps/rx-streams": 20,
+        "wyrihaximus/react-cron": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
