@@ -9,8 +9,9 @@ use Psr\Log\LoggerInterface;
 use React\EventLoop\LoopInterface;
 use React\Promise\Promise;
 use ReactiveApps\Command\Command;
-use ReactiveApps\Command\Cron\Annotations\Cron as CronAnnotation;
-use ReactiveApps\Rx\Shutdown;
+use ReactiveApps\Command\Cron\Annotations\Cron as CronAnnotation;;
+
+use ReactiveApps\LifeCycleEvents\Promise\Shutdown;
 use Recoil\Kernel;
 use Roave\BetterReflection\BetterReflection;
 use Roave\BetterReflection\Reflector\ClassReflector;
@@ -48,7 +49,10 @@ final class Cron implements Command
     private $cronInstances = [];
 
     /**
+     * @param LoopInterface $loop
      * @param LoggerInterface $logger
+     * @param ContainerInterface $container
+     * @param Kernel $kernel
      * @param Shutdown $shutdown
      */
     public function __construct(LoopInterface $loop, LoggerInterface $logger, ContainerInterface $container, Kernel $kernel, Shutdown $shutdown)
@@ -118,5 +122,9 @@ final class Cron implements Command
         yield resolve();
 
         Scheduler::createHighPrecision($this->loop, ...$this->crons);
+
+        yield $this->shutdown;
+
+        return 0;
     }
 }

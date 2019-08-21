@@ -4,7 +4,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use React\EventLoop\LoopInterface;
 use ReactiveApps\Command\Cron\Command\Cron;
-use ReactiveApps\Rx\Shutdown;
+use ReactiveApps\LifeCycleEvents\Promise\Shutdown;
 use Recoil\Kernel;
 use WyriHaximus\PSR3\ContextLogger\ContextLogger;
 
