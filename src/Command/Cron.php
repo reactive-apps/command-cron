@@ -119,11 +119,9 @@ final class Cron implements Command
 
     public function __invoke()
     {
-        yield resolve();
-
         Scheduler::createHighPrecision($this->loop, ...$this->crons);
 
-        yield $this->shutdown;
+        yield resolve($this->shutdown);
 
         return 0;
     }
